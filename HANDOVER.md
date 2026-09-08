@@ -6,8 +6,12 @@ company-wide standards in `E:\CLAUDE\COMPANY\`.
 
 ## Current state
 
-Built and locally verified 2026-09-08 by the daily svc-lab automation
-loop: three client-side tools (metadata checker, metadata fixer, cover
+**Live at https://epub-metadata-fixer.svc.julienika.cz** (deployed
+2026-09-08). Built and domain-expert-reviewed by the daily svc-lab
+automation loop, which stopped safely after running out of session
+budget just before the deploy step; an interactive session finished the
+push+deploy the same day after independently re-verifying the full test
+suite. Three client-side tools (metadata checker, metadata fixer, cover
 image checker) over EPUB files. No database, no accounts, no server-side
 processing at all — everything runs in the browser via JSZip.
 
@@ -143,11 +147,10 @@ interactive session or a skill-level fix rather than silently treating
 
 ## Next steps and open questions
 
-- `COMPANY`-doc reconciliation needed (this automation run doesn't edit
-  `COMPANY\**` by design): add `epub-metadata-fixer` to
-  `COMPANY\INFRASTRUCTURE_DEPLOY.md`'s Company-projects table and port
-  registry (app port `127.0.0.1:30110`, no DB, domain
-  `epub-metadata-fixer.svc.julienika.cz`).
+- ~~`COMPANY`-doc reconciliation~~ — done 2026-09-08 (the interactive
+  session that deployed this also added it to
+  `COMPANY\INFRASTRUCTURE_DEPLOY.md` and `COMPANY\GOALS.md`'s project
+  index).
 - The metadata fixer only edits text fields (title/author/language/
   identifier/publisher/description) — it doesn't add or replace a cover
   image. Could be a real next feature if the checker/fixer split proves

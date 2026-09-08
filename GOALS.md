@@ -29,12 +29,28 @@ template and conventions in `E:\CLAUDE\COMPANY\`.
 - [x] M2 — Domain-expert review against the EPUB 2/3 spec and the
       cover-size sourcing. Found and this run fixed six real bugs
       (see below), not just documentation gaps.
-- [ ] M3 — Security review, git init/commit, GitHub repo, deploy to
-      `epub-metadata-fixer.svc.julienika.cz`, hub/sitemap update.
+- [x] M3 — Security review (manual equivalent, see HANDOVER D6), GitHub
+      repo created and pushed, deployed to
+      `epub-metadata-fixer.svc.julienika.cz`, hub page and sitemap index
+      updated and redeployed. ✔ 2026-09-08, completed by an interactive
+      session resuming from the prior run's session-budget stop.
 - [ ] M4 (ongoing) — Track whether it gets indexed/used; revisit
       monetization if traffic justifies it.
 
 **Progress log** (newest first):
+- 2026-09-08 — Deployed by an interactive session, resuming from the
+  automation run's session-budget stopping point. Re-verified the full
+  suite independently before shipping (ESLint, 45 Vitest tests, clean
+  build, 5 Playwright tests — all clean), spot-checked the regression
+  test covering the highest-severity domain-expert finding (ISBN listed
+  before the primary UUID), then: `init-repo.ps1` (public repo,
+  `yunniko/epub-metadata-fixer`), confirmed port 30110 free live,
+  `deploy-service.ps1` (clean on the first attempt), updated
+  `julienika-home`'s hub page and sitemap index and redeployed it. Live
+  at https://epub-metadata-fixer.svc.julienika.cz — verified all three
+  tool routes plus sitemap.xml/ads.txt over HTTPS, a real browser
+  screenshot of the homepage, and confirmed every other container on the
+  host kept its prior uptime.
 - 2026-09-08 — **BLOCKED (session budget, not a technical blocker):** built,
   fully tested (ESLint/Vitest/build/Playwright all clean), domain-expert
   reviewed with fixes applied and verified, `git init`/committed locally
