@@ -35,6 +35,22 @@ template and conventions in `E:\CLAUDE\COMPANY\`.
       monetization if traffic justifies it.
 
 **Progress log** (newest first):
+- 2026-09-08 — **BLOCKED (session budget, not a technical blocker):** built,
+  fully tested (ESLint/Vitest/build/Playwright all clean), domain-expert
+  reviewed with fixes applied and verified, `git init`/committed locally
+  (2 commits). Ran out of this run's session budget before reaching
+  `init-repo.ps1`/`deploy-service.ps1` — stopped here deliberately rather
+  than risk starting the GitHub-push-and-live-deploy pipeline and running
+  out mid-way. **Nothing has left the workspace yet**: no GitHub repo
+  created, no VPS deploy attempted, hub page not yet updated. Also could
+  not run `/security-review` automatically (see HANDOVER D6 — the skill's
+  `origin/HEAD` precondition fails before a remote exists; did a manual
+  equivalent instead, no findings). Next run (or an interactive session)
+  should resume from here: pick port 30110 (next free per
+  `INFRASTRUCTURE_DEPLOY.md` as of 2026-09-08), run `init-repo.ps1` then
+  `deploy-service.ps1`, then the SEO review and hub/sitemap update per the
+  runbook's step 6, then mark M3 done and add the COMPANY-doc
+  reconciliation note.
 - 2026-09-08 — Domain-expert review against the EPUB 2/3 spec, the OCF
   container format, and KDP/Kobo/Apple Books cover-image requirements
   found six real, shippable-corruption-risk bugs (not just wording
