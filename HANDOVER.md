@@ -106,6 +106,29 @@ all.** Caught during this run's own review of its dependency list —
 removed rather than shipped unused (STANDARDS.md: no dead
 dependencies/files accumulating).
 
+**D6 — The `/security-review` skill could not run automatically for this
+project's first commit.** The skill's own precondition shells out to `git
+diff origin/HEAD...`, which fails with no `origin` remote — and this
+project has none yet at the point the runbook calls for the review (before
+`init-repo.ps1` creates the GitHub remote and pushes). Pushing first to
+satisfy the skill would defeat the point of reviewing before code leaves
+the workspace, so this run did a manual equivalent instead: grepped for
+`eval`/`child_process`/`exec`/`new Function`/`dangerouslySetInnerHTML`/
+`process.env` across every `.ts`/`.tsx` file. Findings: no server-side code
+at all (this is a fully static/client-side app, no API routes), the only
+`dangerouslySetInnerHTML` is the shared template's `lib/json-ld.tsx`
+(JSON.stringify-escaped, already shipped identically in every other
+svc-lab service), every `process.env` read is non-secret public config
+(APP_URL, AdSense publisher ID, site-verification code), and all
+user-supplied EPUB text renders through React JSX text nodes (auto-
+escaped), never raw HTML. No findings. **This is a real tooling gap worth
+fixing**: either the skill needs to tolerate a remote-less repo (e.g. diff
+against the empty tree / first commit when `origin/HEAD` doesn't resolve),
+or the svc-lab runbook needs to sequence `init-repo.ps1`'s remote-add
+(without push) before the security-review step. Flagging for an
+interactive session or a skill-level fix rather than silently treating
+"skill didn't run" as "skill passed."
+
 ## Owner action list
 
 1. AdSense approval status for this domain is unconfirmed, same as every
