@@ -6,9 +6,12 @@ sourcing caveat), next steps. Goal in `GOALS.md` (G-001). Parent initiative
 in `E:\CLAUDE\projects\svc-lab\`; company-wide standards in
 `E:\CLAUDE\COMPANY\`.
 
-- Stack: Next.js App Router, TypeScript, Tailwind. No database, no auth,
-  no accounts. Every EPUB/image is parsed and rewritten client-side in the
-  browser via JSZip — no API routes, nothing is ever sent to a server.
+- Stack: Next.js App Router, TypeScript, Tailwind. No database, no
+  accounts. Every EPUB/image is parsed and rewritten client-side in the
+  browser via JSZip — nothing is ever sent to a server. The only server
+  code is the paid batch mode's two route handlers (`app/api/checkout`,
+  `app/api/verify`) and its cookie check; they touch Stripe, never files.
+  Secrets come from the host `.env` only (see README). D007.
 - `lib/epub-zip.ts` is the only place that should touch JSZip directly.
   `exportEpub()` rebuilds the whole zip explicitly (mimetype first, stored
   uncompressed, every other entry copied in original order) rather than

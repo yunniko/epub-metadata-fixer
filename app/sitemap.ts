@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 const APP_URL = process.env.APP_URL ?? "http://localhost:3000";
 
-const ROUTES = ["", "/metadata-checker", "/metadata-fixer", "/cover-checker"];
+const ROUTES = ["", "/metadata-checker", "/metadata-fixer", "/cover-checker", "/batch-fixer"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return ROUTES.map((route) => ({

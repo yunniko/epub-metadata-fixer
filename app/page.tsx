@@ -16,6 +16,11 @@ const TOOLS = [
     title: "EPUB Cover Image Checker",
     description: "Check a cover image's pixel dimensions and aspect ratio against Amazon KDP, Kobo Writing Life, and Apple Books requirements before you upload it.",
   },
+  {
+    href: "/batch-fixer",
+    title: "Batch EPUB Metadata Fixer",
+    description: "Paid ($5, one time): fix author, publisher, language and description across a whole back-catalogue at once, edit title and identifier per file, and download every corrected .epub as one zip.",
+  },
 ];
 
 export default function Home() {

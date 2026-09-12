@@ -10,6 +10,8 @@ export default defineConfig({
     command: `npm run dev -- -p ${PORT}`,
     url: `http://localhost:${PORT}`,
     reuseExistingServer: false,
+    // Batch-fixer e2e: a known signing secret and deliberately NO Stripe keys.
+    env: { ...process.env, ACCESS_TOKEN_SECRET: "e2e-access-secret", STRIPE_SECRET_KEY: "", STRIPE_PRICE_ID: "" },
     timeout: 120_000,
   },
 });

@@ -1,12 +1,24 @@
 # epub-metadata-fixer
 
-Three EPUB tools for self-published authors, all computed client-side
+Four EPUB tools for self-published authors, all computed client-side
 (nothing is uploaded): a metadata checker (validates title/author/language/
 identifier against the EPUB 2/3 spec, plus cover-image presence), a metadata
-fixer (edit and download a corrected .epub), and a cover-image checker
+fixer (edit and download a corrected .epub), a cover-image checker
 (validates a cover's pixel dimensions/ratio against Amazon KDP, Kobo Writing
-Life, and Apple Books requirements). Part of the `svc-lab` portfolio (see
+Life, and Apple Books requirements), and a **paid batch fixer** ($5 one-time
+via Stripe Checkout: shared fields across many files, per-file title and
+identifier, one zip download). Part of the `svc-lab` portfolio (see
 `E:\CLAUDE\projects\svc-lab\`).
+
+## Configuration (host `.env`)
+
+- `APP_URL`, `ADSENSE_PUBLISHER_ID` — as every svc-lab service.
+- `STRIPE_SECRET_KEY`, `ACCESS_TOKEN_SECRET` — required for the batch-fixer
+  buy button; without them `/batch-fixer` shows "purchases temporarily
+  unavailable" and `/api/checkout` returns 503. `STRIPE_PRICE_ID` is
+  optional (a catalog price instead of the inline `lib/batch-price.ts`).
+  A `sk_test_` key puts the page in visible test mode. See
+  `docs/decisions/D007-stripe-checkout-cookie-entitlement.md`.
 
 ## Running it
 

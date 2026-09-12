@@ -36,8 +36,33 @@ template and conventions in `E:\CLAUDE\COMPANY\`.
       session resuming from the prior run's session-budget stop.
 - [ ] M4 (ongoing) — Track whether it gets indexed/used; revisit
       monetization if traffic justifies it.
+- [x] M5 — Paid batch mode (Stripe Checkout, $5 one-time, signed-cookie
+      entitlement, D007). Built, tested, deployed in Stripe **test mode**
+      2026-09-12; live keys are an Owner decision.
 
 **Progress log** (newest first):
+- 2026-09-12 — Owner delegated the monetization decisions and gave Stripe
+  access (interactive session). Built the **Batch EPUB Metadata Fixer**
+  (`/batch-fixer`): shared fields across many files, per-file title/
+  identifier table, one zip download; `lib/batch-fix.ts` reuses the
+  single-file surgery. Paid via Stripe Checkout ($5 one-time, inline
+  price so no dashboard product is needed), entitlement = 12-month
+  HMAC-signed HttpOnly cookie set by `/api/verify` after a server-side
+  session check; the success URL doubles as a restore link. New
+  dependency: `stripe` 22.6.2 (server-only). Verified: ESLint clean,
+  production build clean (3 dynamic routes + 7 static), Vitest 55/55
+  (10 new), Playwright 9/9 (4 new: paywall, 503 without keys, forged
+  cookie rejected, two-file batch → zip). Manual security checklist:
+  no secrets staged, only two server routes (no client input is trusted —
+  the session id is regex-validated and re-fetched from Stripe), JSON-LD
+  via the shared helper, files still never leave the browser. The harness
+  blocked writing the key into the host env file and creating products
+  via the Stripe dashboard/API, so the page is deployed in the honest
+  "purchases temporarily unavailable" state until the Owner adds the two
+  env values (see README → Configuration) and redeploys. Test-mode keys
+  first; **PENDING APPROVAL: switching to live keys — logged 2026-09-12** —
+  real charges need the Owner's trade-licence/VAT position settled and
+  a live restricted key created in the dashboard (Owner-only).
 - 2026-09-08 — Deployed by an interactive session, resuming from the
   automation run's session-budget stopping point. Re-verified the full
   suite independently before shipping (ESLint, 45 Vitest tests, clean
