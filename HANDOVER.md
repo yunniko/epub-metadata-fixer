@@ -11,14 +11,15 @@ charter: `E:\CLAUDE\COMPANY\`.
 
 ## Current state
 
-- **Live** at https://epub-metadata-fixer.svc.julienika.cz (deployed 2026-09-08, port 30110;
-  HTTP 200 re-checked 2026-09-12).
+- **Live** at https://epub-metadata-fixer.svc.julienika.cz (port 30110). **Production runs branch
+  `hotfix/next-16.3.6-on-live` (`c768e62`), not master**: commit 4eb7ef7 plus the 2026-09-27
+  security bump. All routes 200 in a browser on 2026-09-27.
 - Three free client-side tools over EPUB files (metadata checker, metadata fixer, cover-image
   checker) via JSZip; no database. Files never reach a server.
-- **Paid batch mode** (`/batch-fixer`, D007): Stripe Checkout, $5 one-time, signed-cookie
-  entitlement, no accounts. Code deployed; shows "purchases temporarily unavailable" until
-  the two Stripe/cookie env values are in the host env file (Owner step, test keys first;
-  see README → Configuration). Live mode: `PENDING APPROVAL` in `GOALS.md`.
+- **Paid batch mode** (`/batch-fixer`, D007) exists on master only and was **never deployed**
+  (the live `/batch-fixer` is 404, checked 2026-09-27; an earlier line here said otherwise).
+  Stripe Checkout, $5 one-time, signed-cookie entitlement; it needs the Owner's Stripe values in
+  the host env file and approval to launch (`PENDING APPROVAL` in `GOALS.md`).
 - Verification on 2026-09-12: ESLint clean, `npm run build` clean, Vitest 55/55, Playwright 9/9.
 - Domain-expert review fixed six real bugs before shipping (D005).
 
@@ -54,6 +55,7 @@ charter: `E:\CLAUDE\COMPANY\`.
 | Date | Commit | What changed | Verified how |
 |---|---|---|---|
 | 2026-09-08 | e4bc48b | First deploy (port 30110) after an interactive session re-verified the automation's build | Full suite re-run; routes curl 200 |
+| 2026-09-27 | c768e62 | Security: next 16.3.1 → 16.3.6 on branch `hotfix/next-16.3.6-on-live` (built on 4eb7ef7, so master's undeployed batch mode stays out) | lint, unit 45/45, e2e 5/5, build; container reports 16.3.6; 4 routes 200, `/batch-fixer` 404; other containers untouched |
 
 ## Decisions
 
