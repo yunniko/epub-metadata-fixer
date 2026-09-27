@@ -1,10 +1,15 @@
 # Goals — epub-metadata-fixer
 
+> **SUSPENDED (Owner, 2026-09-27)** — part of the svc-lab family, suspended because it did not work out as expected.
+> No new work; security upkeep only while anything of it is live. Treat its code, formulas and
+> decisions as a **lower-reliability reference**: they may or may not still work, so re-verify before
+> reusing anything. Rules: `E:\CLAUDE\COMPANY\GOALS.md` → "Suspended projects".
+
 Part of the `svc-lab` portfolio initiative (G-001 in
 `E:\CLAUDE\projects\svc-lab\GOALS.md`, backlog idea #9). Company-wide
 template and conventions in `E:\CLAUDE\COMPANY\`.
 
-### G-001 · Ship epub-metadata-fixer as a live svc-lab service — ACTIVE
+### G-001 · Ship epub-metadata-fixer as a live svc-lab service — SUSPENDED
 - **What:** Three client-side EPUB tools for self-published authors: a
   metadata checker, a metadata fixer, and a cover-image checker.
 - **Why:** svc-lab backlog idea #9 — narrow professional audience
